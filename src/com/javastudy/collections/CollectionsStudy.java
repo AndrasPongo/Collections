@@ -1,23 +1,32 @@
 package com.javastudy.collections;
 
+import com.javastudy.collectiontypes.CollectionsFactory;
+import com.javastudy.collectiontypes.ICollections;
+import com.javastudy.measurements.IMeasurement;
+import com.javastudy.measurements.MeasurementsFactory;
+
 public class CollectionsStudy {
 
 	public static void main(String[] args) {
-		long start_time;
-		long finish_time;
-		
+		final int measurementCandidateSize = 1000000; 		
+		final String[][] measurementSetups = {
+				{"return10krandom","ArrayList"},
+				{"return10krandom","LinkedList"}
+		}; 
 
-		CollectionsInitialisationAndRandomAccess randomAccess_ArrayList = new CollectionsInitialisationAndRandomAccess("ArrayList");
-		CollectionsInitialisationAndRandomAccess randomAccess_LinkedList = new CollectionsInitialisationAndRandomAccess("LinkedList");
+		CollectionsFactory collectionFactory = new CollectionsFactory();
+		MeasurementsFactory measurementFactory = new MeasurementsFactory();
+		ICollections collectionCandidate;
+		IMeasurement measurement;
 		
-		start_time = System.currentTimeMillis();
-		randomAccess_ArrayList.return10kElement();
-		finish_time = System.currentTimeMillis();
-		System.out.println("Delta for ArrayList: "+(finish_time-start_time));
-		
-		start_time = System.currentTimeMillis();
-		randomAccess_LinkedList.return10kElement();
-		finish_time = System.currentTimeMillis();
-		System.out.println("Delta for LinkedList: "+(finish_time-start_time));
+		for (int i=0; i<measurementSetups.length; i++) {
+			collectionCandidate = collectionFactory.createCollection(measurementSetups[i][1]);
+			collectionCandidate.initialiseCollection(measurementCandidateSize);
+			
+			measurement = measurementFactory.createMeasurement(measurementSetups[i][0], measurementSetups[i][1]);
+			measurement.setMeasurementCandidate(collectionCandidate);
+
+			System.out.println(measurement.performMeasurement());
+		}
 	}
 }
