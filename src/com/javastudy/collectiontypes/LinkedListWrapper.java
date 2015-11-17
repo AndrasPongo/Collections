@@ -18,6 +18,10 @@ public class LinkedListWrapper implements ICollections {
 		return this.linkedList;
 	}
 	
+	public void insertElement(int element) {
+		linkedList.add(element);
+	}
+	
 	public Integer returnElement(int index) {
 		return linkedList.get(index);
 	}

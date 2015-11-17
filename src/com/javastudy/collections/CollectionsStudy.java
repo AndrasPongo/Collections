@@ -10,9 +10,11 @@ public class CollectionsStudy {
 	public static void main(String[] args) {
 		final int measurementCandidateSize = 1000000; 		
 		final String[][] measurementSetups = {
+				{"insert10M","ArrayList"},
+				{"insert10M","LinkedList"},
 				{"return10krandom","ArrayList"},
 				{"return10krandom","LinkedList"}
-		}; 
+		};
 
 		CollectionsFactory collectionFactory = new CollectionsFactory();
 		MeasurementsFactory measurementFactory = new MeasurementsFactory();

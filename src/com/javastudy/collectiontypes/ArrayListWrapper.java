@@ -18,6 +18,10 @@ public class ArrayListWrapper implements ICollections {
 		return arrayList;
 	}
 	
+	public void insertElement(int element) {
+		arrayList.add(element);
+	}
+	
 	public Integer returnElement(int index) {
 		return arrayList.get(index);
 	}

@@ -7,6 +7,8 @@ public interface ICollections {
 	
 	Integer returnElement(int index);
 	
+	void insertElement(int element);
+	
 	int returnSize();
 	
 	/*
